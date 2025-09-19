@@ -1,0 +1,24 @@
+server:
+  port: 9955
+
+spring:
+  cloud:
+    aws:
+      secretsmanager:
+        reload:
+          strategy: refresh
+          period: 20s
+  config:
+    import: aws-secretsmanager:myInternalJwtSecret
+  application:
+    name: demo
+
+custom:
+  secrets:
+    username: ${USER_NAME}
+    password: ${PASSWORD}
+
+logging:
+  level:
+    io.awspring: TRACE
+    io.awspring.cloud.autoconfigure.config.reload: DEBUG
